@@ -9,7 +9,10 @@ h1 {
 
 .url-input {
     margin: auto;
-    width: 30%;
-    border: 3px solid #73AD21;
+    width: 20%;
     padding: 10px;
+}
+
+.url-input #url{
+    width: 200px;
 }
