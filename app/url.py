@@ -1,3 +1,6 @@
+from app import redisConnection
+
+
 class Url:
 
     charMap = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
@@ -6,11 +9,17 @@ class Url:
      'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5',
      '6', '7', '8', '9']
 
-    def __init__(self, url):
-        self.url = url
+    def getUrl(self, link):
+        id = self.toId(link)
+        url = redisConnection.get(id)
+        return url
 
-    def getUrl(self):
-        return "URL: "+self.url
+    def addPetitUrl(self, url):
+        id = redisConnection.set(url)
+        print "=====> ID" + str(id)
+        petiturl = self.toPetitUrl(id)
+        print "=====> URL" + petiturl
+        return petiturl
 
     def toPetitUrl(self, id):
         shorturl = ""
